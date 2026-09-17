@@ -3,14 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Crush</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff4b7d, #ff7a59);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            margin: 14px 0;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .signup {
+            background: white;
+            color: #ff4b7d;
+        }
+
+        .login {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Welcome to Crush</h1>
+    <div class="container">
 
-    <p>Connect. Communicate. Interact.</p>
+        <div class="logo">Crush</div>
+
+        <div class="tagline">
+            Connect. Communicate. Interact.
+        </div>
+
+        <button class="button signup">
+            Create Account
+        </button>
+
+        <button class="button login">
+            Log In
+        </button>
+
+        <div class="footer">
+            A new way to connect with people.
+        </div>
+
+    </div>
 
 </body>
 </html>
