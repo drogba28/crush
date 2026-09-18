@@ -1,1 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crush Chat</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffd7b8;
+      color: #111;
+    }
+
+    .chat-app {
+      max-width: 500px;
+      margin: auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #ffd7b8;
+    }
+
+    .chat-header {
+      background: #9cddf5;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #888;
+    }
+
+    .back {
+      font-size: 26px;
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+    }
+
+    .person-info {
+      flex: 1;
+    }
+
+    .name {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .status {
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .header-button {
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .messages {
+      flex: 1;
+      padding: 20px 12px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .watermark {
+      position: absolute;
+      font-size: 25px;
+      opacity: 0.08;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .w1 { top: 8%; left: 8%; }
+    .w2 { top: 18%; right: 10%; }
+    .w3 { top: 34%; left: 25%; }
+    .w4 { top: 50%; right: 15%; }
+    .w5 { top: 65%; left: 8%; }
+    .w6 { top: 78%; right: 25%; }
+    .w7 { top: 88%; left: 35%; }
+
+    .bubble {
+      position: relative;
+      z-index: 2;
+      max-width: 78%;
+      padding: 11px 14px;
+      margin: 10px 0;
+      border-radius: 16px;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #111;
+    }
+
+    .received {
+      background: #ffffff;
+      margin-right: auto;
+      border-bottom-left-radius: 4px;
+    }
+
+    .sent {
+      background: #9cddf5;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+
+    .time {
+      display: block;
+      font-size: 10px;
+      text-align: right;
+      margin-top: 5px;
+      opacity: 0.6;
+    }
+
+    .message-box {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      gap: 8px;
+      padding: 10px;
+      background: #f7f7f7;
+      border-top: 1px solid #ccc;
+    }
+
+    .message-box input {
+      flex: 1;
+      border: none;
+      border-radius: 25px;
+      padding: 13px 16px;
+      font-size: 16px;
+      outline: none;
+      background: white;
+    }
+
+    .send-button {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: #9cddf5;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="chat-app">
+
+  <div class="chat-header">
+
+    <a href="crush.html" class="back">‹</a>
+
+    <div class="avatar">👩</div>
+
+    <div class="person-info">
+      <div class="name">Ashley</div>
+      <div class="status">Online</div>
+    </div>
+
+    <button class="header-button">📞</button>
+    <button class="header-button">⋮</button>
+
+  </div>
+
+  <div class="messages" id="messages">
+
+    <span class="watermark w1">🇹🇹</span>
+    <span class="watermark w2">🌴</span>
+    <span class="watermark w3">F♛</span>
+    <span class="watermark w4">Crush</span>
+    <span class="watermark w5">🌴</span>
+    <span class="watermark w6">🇹🇹</span>
+    <span class="watermark w7">F♛</span>
+
+    <div class="bubble received">
+      Hey 👋 how are you?
+      <span class="time">8:20 PM</span>
+    </div>
+
+    <div class="bubble sent">
+      I'm good. What's going on?
+      <span class="time">8:21 PM</span>
+    </div>
+
+    <div class="bubble received">
+      Just checking on you 😊
+      <span class="time">8:22 PM</span>
+    </div>
+
+  </div>
+
+  <div class="message-box">
+
+    <input
+      type="text"
+      id="messageInput"
+      placeholder="Message"
+      autocomplete="off"
+    >
+
+    <button
+      class="send-button"
+      onclick="sendMessage()">
+      ➤
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+function sendMessage() {
+
+  const input =
+    document.getElementById("messageInput");
+
+  const messages =
+    document.getElementById("messages");
+
+  const text = input.value.trim();
+
+  if (text === "") {
+    return;
+  }
+
+  const bubble =
+    document.createElement("div");
+
+  bubble.className = "bubble sent";
+
+  bubble.textContent = text;
+
+  messages.appendChild(bubble);
+
+  input.value = "";
+
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
+}
+
+document
+  .getElementById("messageInput")
+  .addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
