@@ -1,76 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account - Crush</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Crush</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    *{
+      box-sizing:border-box;
+    }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff4b7d, #ff7a59);
-        }
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:linear-gradient(135deg,#ff4b7d,#ff7a59);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
 
-        .box {
-            width: 90%;
-            max-width: 420px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-        }
+    .container{
+      width:90%;
+      max-width:420px;
+      background:white;
+      border-radius:25px;
+      padding:30px;
+    }
 
-        h1 {
-            text-align: center;
-            color: #ff4b7d;
-        }
+    h1{
+      text-align:center;
+      color:#ff4b7d;
+      margin-bottom:8px;
+    }
 
-        input {
-            width: 100%;
-            padding: 14px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-        }
+    p{
+      text-align:center;
+      color:#666;
+      margin-bottom:25px;
+    }
 
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 25px;
-            background: #ff4b7d;
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-        }
-    </style>
+    input{
+      width:100%;
+      padding:15px;
+      margin:10px 0;
+      border:1px solid #ddd;
+      border-radius:12px;
+      font-size:16px;
+    }
+
+    button{
+      width:100%;
+      padding:15px;
+      margin-top:15px;
+      border:none;
+      border-radius:30px;
+      background:#ff4b7d;
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .back{
+      display:block;
+      text-align:center;
+      margin-top:20px;
+      color:#ff4b7d;
+      text-decoration:none;
+      font-weight:bold;
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="box">
+  <div class="container">
 
-        <h1>Create Account</h1>
+    <h1>Crush</h1>
 
-        <input type="text" placeholder="Your name">
+    <p>Create your account</p>
 
-        <input type="email" placeholder="Email address">
+    <input type="text" placeholder="Full Name">
 
-        <input type="password" placeholder="Password">
+    <input type="email" placeholder="Email">
 
-        <button>Create Account</button>
+    <input type="password" placeholder="Password">
 
-    </div>
+    <button>Create Account</button>
+
+    <a href="index.html" class="back">Back to Home</a>
+
+  </div>
 
 </body>
 </html>
