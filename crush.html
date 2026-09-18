@@ -10,15 +10,17 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
+      width: 100%;
+      overflow-x: hidden;
       font-family: Arial, sans-serif;
       background: #e8f7ff;
       color: #111;
-      overflow-x: hidden;
     }
 
     .app {
+      width: 100%;
       max-width: 500px;
       margin: auto;
       min-height: 100vh;
@@ -31,9 +33,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
 
     .logo {
@@ -62,9 +61,6 @@
       background: white;
       border-bottom: 1px solid #ddd;
       scrollbar-width: none;
-      position: sticky;
-      top: 78px;
-      z-index: 9;
     }
 
     .navigation::-webkit-scrollbar {
@@ -72,12 +68,13 @@
     }
 
     .nav-item {
+      flex: 0 0 auto;
       min-width: 95px;
       padding: 16px 10px;
       text-align: center;
       font-weight: bold;
-      cursor: pointer;
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .nav-item.active {
@@ -86,13 +83,15 @@
     }
 
     .content {
-      padding: 20px;
+      width: 100%;
       min-height: 70vh;
+      padding: 20px;
       touch-action: pan-y;
     }
 
     .section {
       display: none;
+      width: 100%;
     }
 
     .section.active {
@@ -104,6 +103,7 @@
     }
 
     .card {
+      width: 100%;
       background: white;
       border-radius: 18px;
       padding: 16px;
@@ -120,17 +120,18 @@
     .avatar {
       width: 55px;
       height: 55px;
+      min-width: 55px;
       border-radius: 50%;
       background: #9cddf5;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 25px;
-      flex-shrink: 0;
     }
 
     .person-info {
       flex: 1;
+      min-width: 0;
     }
 
     .name {
@@ -165,72 +166,68 @@
     <div class="profile">👤</div>
   </div>
 
-  <div class="navigation" id="navigation">
+  <div class="navigation">
 
-    <div class="nav-item active"
-         onclick="goToSection(0)">
+    <div class="nav-item active" onclick="goToSection(0)">
       Crush
     </div>
 
-    <div class="nav-item"
-         onclick="goToSection(1)">
+    <div class="nav-item" onclick="goToSection(1)">
       Stories
     </div>
 
-    <div class="nav-item"
-         onclick="goToSection(2)">
+    <div class="nav-item" onclick="goToSection(2)">
       Friendzone
     </div>
 
-    <div class="nav-item"
-         onclick="goToSection(3)">
+    <div class="nav-item" onclick="goToSection(3)">
       Calls
     </div>
 
-    <div class="nav-item"
-         onclick="goToSection(4)">
+    <div class="nav-item" onclick="goToSection(4)">
       Ass
     </div>
 
-    <div class="nav-item"
-         onclick="goToSection(5)">
+    <div class="nav-item" onclick="goToSection(5)">
       Send Crush
     </div>
-<div class="card person" onclick="window.location.href='chat.html'" style="cursor:pointer;">
+
   </div>
 
   <div class="content" id="swipeArea">
 
+    <!-- CRUSH -->
     <div class="section active">
 
       <h2>Your Crushes 💙</h2>
 
-     onclick="window.location.href='chat.html'"
-     style="cursor:pointer;">
+      <div class="card person"
+           onclick="window.location.href='chat.html'"
+           style="cursor:pointer;">
 
-  <div class="avatar">👩</div>
+        <div class="avatar">👩</div>
 
-  <div class="person-info">
-    <div class="name">Ashley</div>
-    <div class="message">Hey 👋 how are you?</div>
-  </div>
+        <div class="person-info">
+          <div class="name">Ashley</div>
+          <div class="message">Hey 👋 how are you?</div>
+        </div>
 
-</div>
-     
+      </div>
 
       <div class="card person">
+
         <div class="avatar">👨</div>
 
         <div class="person-info">
           <div class="name">Marcus</div>
-          <div class="message">
-            What's going on tonight?
-          </div>
+          <div class="message">What's going on tonight?</div>
         </div>
+
       </div>
 
     </div>
 
+    <!-- STORIES -->
     <div class="section">
 
       <h2>Status / Stories 📸</h2>
@@ -241,6 +238,7 @@
 
     </div>
 
+    <!-- FRIENDZONE -->
     <div class="section">
 
       <h2>Friendzone 🤝</h2>
@@ -251,6 +249,7 @@
 
     </div>
 
+    <!-- CALLS -->
     <div class="section">
 
       <h2>Calls 📞</h2>
@@ -261,6 +260,7 @@
 
     </div>
 
+    <!-- ASSOCIATES -->
     <div class="section">
 
       <h2>Associates 👥</h2>
@@ -271,6 +271,7 @@
 
     </div>
 
+    <!-- SEND CRUSH -->
     <div class="section">
 
       <h2>Send a Crush 💙</h2>
@@ -281,9 +282,7 @@
 
         <div class="person-info">
           <div class="name">Taylor</div>
-          <div class="message">
-            Send Taylor a Crush
-          </div>
+          <div class="message">Send Taylor a Crush</div>
         </div>
 
         <button class="action-button">
@@ -314,19 +313,13 @@
       return;
     }
 
-    sections[currentSection]
-      .classList.remove("active");
-
-    tabs[currentSection]
-      .classList.remove("active");
+    sections[currentSection].classList.remove("active");
+    tabs[currentSection].classList.remove("active");
 
     currentSection = index;
 
-    sections[currentSection]
-      .classList.add("active");
-
-    tabs[currentSection]
-      .classList.add("active");
+    sections[currentSection].classList.add("active");
+    tabs[currentSection].classList.add("active");
 
     tabs[currentSection].scrollIntoView({
       behavior: "smooth",
@@ -341,56 +334,38 @@
   let startX = 0;
   let startY = 0;
 
-  swipeArea.addEventListener(
-    "touchstart",
-    function(event) {
+  swipeArea.addEventListener("touchstart", function(event) {
 
-      startX = event.touches[0].clientX;
-      startY = event.touches[0].clientY;
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
 
-    },
-    { passive: true }
-  );
+  }, { passive: true });
 
-  swipeArea.addEventListener(
-    "touchend",
-    function(event) {
+  swipeArea.addEventListener("touchend", function(event) {
 
-      const endX =
-        event.changedTouches[0].clientX;
+    const endX =
+      event.changedTouches[0].clientX;
 
-      const endY =
-        event.changedTouches[0].clientY;
+    const endY =
+      event.changedTouches[0].clientY;
 
-      const differenceX =
-        endX - startX;
+    const differenceX = endX - startX;
+    const differenceY = endY - startY;
 
-      const differenceY =
-        endY - startY;
+    if (
+      Math.abs(differenceX) > 50 &&
+      Math.abs(differenceX) > Math.abs(differenceY)
+    ) {
 
-      if (
-        Math.abs(differenceX) > 50 &&
-        Math.abs(differenceX) >
-        Math.abs(differenceY)
-      ) {
-
-        if (differenceX < 0) {
-
-          goToSection(
-            currentSection + 1
-          );
-
-        } else {
-
-          goToSection(
-            currentSection - 1
-          );
-
-        }
+      if (differenceX < 0) {
+        goToSection(currentSection + 1);
+      } else {
+        goToSection(currentSection - 1);
       }
-    },
-    { passive: true }
-  );
+
+    }
+
+  }, { passive: true });
 
 </script>
 
