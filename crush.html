@@ -1,434 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crush</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>Crush Chat</title>
 
-    html, body {
-      margin: 0;
-      width: 100%;
-      overflow-x: hidden;
-      font-family: Arial, sans-serif;
-      background: #e8f7ff;
-      color: #111;
-    }
+<style>
 
-    .app {
-      width: 100%;
-      max-width: 500px;
-      margin: auto;
-      min-height: 100vh;
-      background: #f7fcff;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    .header {
-      background: #9cddf5;
-      padding: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: #f3cbb8;
+}
 
-    .logo {
-      background: #8ed8f4;
-      border: 3px solid #111;
-      padding: 8px 14px;
-      font-size: 22px;
-      font-weight: bold;
-    }
+/* WHOLE CHAT */
+.chat-app {
+    width: 100%;
+    max-width: 650px;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #f3cbb8;
+    overflow: hidden;
+}
 
-    .profile {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: white;
-      border: 2px solid #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
+/* ASHLEY TOP BAR */
+.chat-header {
+    flex-shrink: 0;
+    height: 90px;
+    background: #67c8e8;
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    z-index: 10;
+}
 
-    .navigation {
-      display: flex;
-      overflow-x: auto;
-      background: white;
-      border-bottom: 1px solid #ddd;
-      scrollbar-width: none;
-    }
+.back {
+    font-size: 30px;
+    margin-right: 12px;
+    cursor: pointer;
+}
 
-    .navigation::-webkit-scrollbar {
-      display: none;
-    }
+.avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #eeeeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    margin-right: 12px;
+}
 
-    .nav-item {
-      flex: 0 0 auto;
-      min-width: 95px;
-      padding: 16px 10px;
-      text-align: center;
-      font-weight: bold;
-      white-space: nowrap;
-      cursor: pointer;
-    }
+.person-info {
+    flex: 1;
+}
 
-    .nav-item.active {
-      background: #9cddf5;
-      border-bottom: 4px solid #111;
-    }
+.person-name {
+    font-size: 25px;
+    font-weight: bold;
+}
 
-    .content {
-      width: 100%;
-      min-height: 70vh;
-      padding: 20px;
-      touch-action: pan-y;
-    }
+.online {
+    font-size: 16px;
+    margin-top: 3px;
+}
 
-    .section {
-      display: none;
-      width: 100%;
-    }
+.phone {
+    font-size: 30px;
+    margin-right: 25px;
+    cursor: pointer;
+}
 
-    .section.active {
-      display: block;
-    }
+.menu {
+    font-size: 30px;
+    cursor: pointer;
+}
 
-    h2 {
-      margin-top: 0;
-    }
+/* MESSAGE AREA */
+.messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 25px 18px;
+    background-color: #f3cbb8;
+}
 
-    .card {
-      width: 100%;
-      background: white;
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+/* MESSAGE BUBBLES */
+.message {
+    max-width: 78%;
+    padding: 13px 16px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+    font-size: 18px;
+    line-height: 1.35;
+    word-wrap: break-word;
+    clear: both;
+}
 
-    .person {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+.received {
+    background: #ffffff;
+    float: left;
+}
 
-    .avatar {
-      width: 55px;
-      height: 55px;
-      min-width: 55px;
-      border-radius: 50%;
-      background: #9cddf5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
-    }
+.sent {
+    background: #67c8e8;
+    float: right;
+}
 
-    .person-info {
-      flex: 1;
-      min-width: 0;
-    }
+/* STARTING MESSAGES */
+.message-time {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    margin-top: 5px;
+    opacity: 0.6;
+}
 
-    .name {
-      font-weight: bold;
-      font-size: 17px;
-    }
+/* BOTTOM TYPING AREA */
+.composer {
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 75px;
+    background: #f5f5f5;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 100;
+}
 
-    .message {
-      color: #666;
-      font-size: 14px;
-      margin-top: 5px;
-    }
+/* ACTUAL TEXT BOX */
+#messageInput {
+    flex: 1;
+    height: 52px;
+    border: none;
+    outline: none;
+    border-radius: 26px;
+    background: white;
+    padding: 0 20px;
+    font-size: 18px;
+    color: #111;
+    position: relative;
+    z-index: 101;
+}
 
-    .action-button {
-      border: none;
-      background: #9cddf5;
-      color: #111;
-      font-weight: bold;
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-  </style>
+#messageInput::placeholder {
+    color: #777;
+}
+
+/* SEND BUTTON */
+#sendButton {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #67c8e8;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#sendButton:active {
+    transform: scale(0.95);
+}
+
+/* CLEAR FLOATS */
+.clear {
+    clear: both;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="chat-app">
 
-  <div class="header">
-    <div class="logo">Crush</div>
-    <div class="profile">👤</div>
-  </div>
+    <!-- ASHLEY HEADER -->
+    <div class="chat-header">
 
-  <div class="navigation">
-
-    <div class="nav-item active" onclick="goToSection(0)">
-      Crush
-    </div>
-
-    <div class="nav-item" onclick="goToSection(1)">
-      Stories
-    </div>
-
-    <div class="nav-item" onclick="goToSection(2)">
-      Friendzone
-    </div>
-
-    <div class="nav-item" onclick="goToSection(3)">
-      Calls
-    </div>
-
-    <div class="nav-item" onclick="goToSection(4)">
-      Ass
-    </div>
-
-    <div class="nav-item" onclick="goToSection(5)">
-      Send Crush
-    </div>
-
-  </div>
-
-  <div class="content" id="swipeArea">
-
-    <!-- CRUSH -->
-    <div class="section active">
-
-      <h2>Your Crushes 💙</h2>
-
-      <div class="card person"
-           onclick="window.location.href='chat.html'"
-           style="cursor:pointer;">
+        <div class="back">‹</div>
 
         <div class="avatar">👩</div>
 
         <div class="person-info">
-          <div class="name">Ashley</div>
-          <div class="message">Hey 👋 how are you?</div>
+            <div class="person-name">Ashley</div>
+            <div class="online">Online</div>
         </div>
 
-      </div>
+        <div class="phone">📞</div>
 
-      <div class="card person">
+        <div class="menu">⋮</div>
 
-        <div class="avatar">👨</div>
+    </div>
 
-        <div class="person-info">
-          <div class="name">Marcus</div>
-          <div class="message">What's going on tonight?</div>
+
+    <!-- CHAT MESSAGES -->
+    <div class="messages" id="messages">
+
+        <div class="message received">
+            Hey 😊
+            <span class="message-time">8:20 PM</span>
         </div>
 
-      </div>
+        <div class="clear"></div>
 
-    </div>
-
-    <!-- STORIES -->
-    <div class="section">
-
-      <h2>Status / Stories 📸</h2>
-
-      <div class="card">
-        Your friends' stories will appear here.
-      </div>
-
-    </div>
-
-    <!-- FRIENDZONE -->
-    <div class="section">
-
-      <h2>Friendzone 🤝</h2>
-
-      <div class="card">
-        People placed in your Friendzone will appear here.
-      </div>
-
-    </div>
-
-    <!-- CALLS -->
-    <div class="section">
-
-      <h2>Calls 📞</h2>
-
-      <div class="card">
-        Incoming, outgoing and missed calls will appear here.
-      </div>
-
-    </div>
-
-    <!-- ASSOCIATES -->
-    <div class="section">
-
-      <h2>Associates 👥</h2>
-
-      <div class="card">
-        Your associates will appear here.
-      </div>
-
-    </div>
-
-    <!-- SEND CRUSH -->
-    <div class="section">
-
-      <h2>Send a Crush 💙</h2>
-
-      <div class="card person">
-
-        <div class="avatar">👩</div>
-
-        <div class="person-info">
-          <div class="name">Taylor</div>
-          <div class="message">Send Taylor a Crush</div>
+        <div class="message sent">
+            I'm good. What's going on?
+            <span class="message-time">8:21 PM</span>
         </div>
 
-        <button class="action-button">
-          Crush
-        </button>
+        <div class="clear"></div>
 
-      </div>
+        <div class="message received">
+            Just checking on you 😊
+            <span class="message-time">8:22 PM</span>
+        </div>
+
+        <div class="clear"></div>
 
     </div>
 
-  </div>
+
+    <!-- TYPING AREA -->
+    <div class="composer">
+
+        <input
+            id="messageInput"
+            type="text"
+            placeholder="Message"
+            autocomplete="off"
+        >
+
+        <button id="sendButton">➤</button>
+
+    </div>
 
 </div>
 
+
 <script>
 
-  const sections =
-    document.querySelectorAll(".section");
+const input = document.getElementById("messageInput");
+const sendButton = document.getElementById("sendButton");
+const messages = document.getElementById("messages");
 
-  const tabs =
-    document.querySelectorAll(".nav-item");
 
-  let currentSection = 0;
+function sendMessage() {
 
-  function goToSection(index) {
+    const text = input.value.trim();
 
-    if (index < 0 || index >= sections.length) {
-      return;
+    if (text === "") {
+        return;
     }
 
-    sections[currentSection].classList.remove("active");
-    tabs[currentSection].classList.remove("active");
+    const bubble = document.createElement("div");
+    bubble.className = "message sent";
 
-    currentSection = index;
+    const messageText = document.createTextNode(text);
+    bubble.appendChild(messageText);
 
-    sections[currentSection].classList.add("active");
-    tabs[currentSection].classList.add("active");
+    const time = document.createElement("span");
+    time.className = "message-time";
 
-    tabs[currentSection].scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest"
+    const now = new Date();
+
+    time.textContent = now.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit"
     });
-  }
 
-  const swipeArea =
-    document.getElementById("swipeArea");
+    bubble.appendChild(time);
 
-  let startX = 0;
-  let startY = 0;
+    messages.appendChild(bubble);
 
-  swipeArea.addEventListener("touchstart", function(event) {
+    const clear = document.createElement("div");
+    clear.className = "clear";
+    messages.appendChild(clear);
 
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
+    input.value = "";
 
-  }, { passive: true });
+    messages.scrollTop = messages.scrollHeight;
 
-  swipeArea.addEventListener("touchend", function(event) {
+    input.focus();
+}
 
-    const endX =
-      event.changedTouches[0].clientX;
 
-    const endY =
-      event.changedTouches[0].clientY;
+/* SEND BUTTON */
+sendButton.addEventListener("click", sendMessage);
 
-    const differenceX = endX - startX;
-    const differenceY = endY - startY;
 
-    if (
-      Math.abs(differenceX) > 50 &&
-      Math.abs(differenceX) > Math.abs(differenceY)
-    ) {
+/* ENTER KEY SENDS MESSAGE */
+input.addEventListener("keydown", function(event) {
 
-      if (differenceX < 0) {
-        goToSection(currentSection + 1);
-      } else {
-        goToSection(currentSection - 1);
-      }
-
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
     }
 
-  }, { passive: true });
+});
 
 </script>
-<style>
-/* Keep the typing box in front of dropdowns/background items */
-.message-input,
-.input-area,
-.chat-input,
-.message-box {
-    position: relative !important;
-    z-index: 9999 !important;
-}
 
-/* Keep dropdown/menu behind the typing box */
-.dropdown,
-.dropdown-menu {
-    z-index: 100 !important;
-}
-
-  <style>
-/* Keep the typing box in front of dropdowns/background items */
-.message-input,
-.input-area,
-.chat-input,
-.message-box {
-    position: relative !important;
-    z-index: 9999 !important;
-}
-
-/* Keep dropdown/menu behind the typing box */
-.dropdown,
-.dropdown-menu {
-    z-index: 100 !important;
-}
-<style>
-/* Keep the typing box in front of dropdowns/background items */
-.message-input,
-.input-area,
-.chat-input,
-.message-box {
-    position: relative !important;
-    z-index: 9999 !important;
-}
-
-/* Keep dropdown/menu behind the typing box */
-.dropdown,
-.dropdown-menu {
-    z-index: 100 !important;
-}
-<style>
-/* Keep the typing box in front of dropdowns/background items */
-.message-input,
-.input-area,
-.chat-input,
-.message-box {
-    position: relative !important;
-    z-index: 9999 !important;
-}
-
-/* Keep dropdown/menu behind the typing box */
-.dropdown,
-.dropdown-menu {
-    z-index: 100 !important;
-}
-</style>
-</style>
+</body>
 </html>
