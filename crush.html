@@ -6,9 +6,7 @@
   <title>Crush</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -41,7 +39,6 @@
       padding: 8px 14px;
       font-size: 22px;
       font-weight: bold;
-      color: #111;
     }
 
     .profile {
@@ -86,26 +83,30 @@
       padding: 20px;
     }
 
-    .welcome {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 5px;
+    .section {
+      display: none;
     }
 
-    .subtitle {
-      color: #555;
-      margin-bottom: 25px;
+    .section.active {
+      display: block;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .person {
-      background: white;
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .avatar {
@@ -117,6 +118,7 @@
       align-items: center;
       justify-content: center;
       font-size: 25px;
+      flex-shrink: 0;
     }
 
     .person-info {
@@ -134,9 +136,14 @@
       margin-top: 5px;
     }
 
-    .time {
-      font-size: 12px;
-      color: #777;
+    .action-button {
+      border: none;
+      background: #9cddf5;
+      color: #111;
+      font-weight: bold;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -151,58 +158,104 @@
   </div>
 
   <div class="navigation">
-    <div class="nav-item active">Crush</div>
-    <div class="nav-item">Stories</div>
-    <div class="nav-item">Friendzone</div>
-    <div class="nav-item">Calls</div>
-    <div class="nav-item">Ass</div>
-    <div class="nav-item">Send Crush</div>
+    <div class="nav-item active" onclick="showSection('crush', this)">Crush</div>
+    <div class="nav-item" onclick="showSection('stories', this)">Stories</div>
+    <div class="nav-item" onclick="showSection('friendzone', this)">Friendzone</div>
+    <div class="nav-item" onclick="showSection('calls', this)">Calls</div>
+    <div class="nav-item" onclick="showSection('associates', this)">Ass</div>
+    <div class="nav-item" onclick="showSection('send', this)">Send Crush</div>
   </div>
 
   <div class="content">
 
-    <div class="welcome">Your Crushes 💙</div>
+    <div id="crush" class="section active">
+      <h2>Your Crushes 💙</h2>
 
-    <div class="subtitle">
-      Messages from people in your Crush section
-    </div>
-
-    <div class="person">
-      <div class="avatar">👩</div>
-
-      <div class="person-info">
-        <div class="name">Ashley</div>
-        <div class="message">Hey 👋 how are you?</div>
+      <div class="card person">
+        <div class="avatar">👩</div>
+        <div class="person-info">
+          <div class="name">Ashley</div>
+          <div class="message">Hey 👋 how are you?</div>
+        </div>
       </div>
 
-      <div class="time">8:20 PM</div>
+      <div class="card person">
+        <div class="avatar">👨</div>
+        <div class="person-info">
+          <div class="name">Marcus</div>
+          <div class="message">What's going on tonight?</div>
+        </div>
+      </div>
     </div>
 
-    <div class="person">
-      <div class="avatar">👨</div>
+    <div id="stories" class="section">
+      <h2>Status / Stories</h2>
 
-      <div class="person-info">
-        <div class="name">Marcus</div>
-        <div class="message">What's going on tonight?</div>
+      <div class="card">
+        📸 Your friends' stories will appear here.
       </div>
-
-      <div class="time">7:45 PM</div>
     </div>
 
-    <div class="person">
-      <div class="avatar">👩</div>
+    <div id="friendzone" class="section">
+      <h2>Friendzone 🤝</h2>
 
-      <div class="person-info">
-        <div class="name">Kayla</div>
-        <div class="message">Sent you a Crush 💙</div>
+      <div class="card">
+        People placed in your Friendzone will appear here.
       </div>
+    </div>
 
-      <div class="time">6:10 PM</div>
+    <div id="calls" class="section">
+      <h2>Calls 📞</h2>
+
+      <div class="card">
+        Incoming, outgoing and missed calls will appear here.
+      </div>
+    </div>
+
+    <div id="associates" class="section">
+      <h2>Associates 👥</h2>
+
+      <div class="card">
+        Your associates will appear here.
+      </div>
+    </div>
+
+    <div id="send" class="section">
+      <h2>Send a Crush 💙</h2>
+
+      <div class="card person">
+        <div class="avatar">👩</div>
+
+        <div class="person-info">
+          <div class="name">Taylor</div>
+          <div class="message">Send Taylor a Crush</div>
+        </div>
+
+        <button class="action-button">Crush</button>
+      </div>
     </div>
 
   </div>
 
 </div>
+
+<script>
+  function showSection(sectionId, clickedTab) {
+
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+      section.classList.remove('active');
+    });
+
+    const tabs = document.querySelectorAll('.nav-item');
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    document.getElementById(sectionId).classList.add('active');
+    clickedTab.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
