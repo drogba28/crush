@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crush</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e8f7ff;
+      color: #111;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: auto;
+      min-height: 100vh;
+      background: #f7fcff;
+    }
+
+    .header {
+      background: #9cddf5;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      background: #8ed8f4;
+      border: 3px solid #111;
+      padding: 8px 14px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .profile {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .navigation {
+      display: flex;
+      overflow-x: auto;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      scrollbar-width: none;
+    }
+
+    .navigation::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-item {
+      min-width: 95px;
+      padding: 16px 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-item.active {
+      background: #9cddf5;
+      border-bottom: 4px solid #111;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .welcome {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .person {
+      background: white;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: #9cddf5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+    }
+
+    .person-info {
+      flex: 1;
+    }
+
+    .name {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .message {
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .time {
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <div class="logo">Crush</div>
+    <div class="profile">👤</div>
+  </div>
+
+  <div class="navigation">
+    <div class="nav-item active">Crush</div>
+    <div class="nav-item">Stories</div>
+    <div class="nav-item">Friendzone</div>
+    <div class="nav-item">Calls</div>
+    <div class="nav-item">Ass</div>
+    <div class="nav-item">Send Crush</div>
+  </div>
+
+  <div class="content">
+
+    <div class="welcome">Your Crushes 💙</div>
+
+    <div class="subtitle">
+      Messages from people in your Crush section
+    </div>
+
+    <div class="person">
+      <div class="avatar">👩</div>
+
+      <div class="person-info">
+        <div class="name">Ashley</div>
+        <div class="message">Hey 👋 how are you?</div>
+      </div>
+
+      <div class="time">8:20 PM</div>
+    </div>
+
+    <div class="person">
+      <div class="avatar">👨</div>
+
+      <div class="person-info">
+        <div class="name">Marcus</div>
+        <div class="message">What's going on tonight?</div>
+      </div>
+
+      <div class="time">7:45 PM</div>
+    </div>
+
+    <div class="person">
+      <div class="avatar">👩</div>
+
+      <div class="person-info">
+        <div class="name">Kayla</div>
+        <div class="message">Sent you a Crush 💙</div>
+      </div>
+
+      <div class="time">6:10 PM</div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
