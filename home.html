@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Crush Home</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background: #dcefe3;
+    color: #111;
+}
+
+.home-app {
+    width: 100%;
+    max-width: 650px;
+    min-height: 100vh;
+    margin: auto;
+    padding: 20px 14px;
+}
+
+/* TOP */
+.top-bar {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.logo {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.subtitle {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* SIX SECTIONS */
+.sections {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 8px 2px 18px;
+    scrollbar-width: thin;
+}
+
+.section {
+    flex: 0 0 115px;
+    background: rgba(255,255,255,0.72);
+    border-radius: 16px;
+    padding: 16px 10px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.section-icon {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+/* PEOPLE */
+.heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 8px 0 12px;
+}
+
+.person {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255,0.65);
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #67c8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    margin-right: 13px;
+}
+
+.person-name {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.status {
+    font-size: 13px;
+    margin-top: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="home-app">
+
+    <div class="top-bar">
+        <div class="logo">Crush</div>
+        <div class="subtitle">Connect. Communicate. Interact.</div>
+    </div>
+
+    <div class="sections">
+
+        <div class="section">
+            <span class="section-icon">💚</span>
+            Crush
+        </div>
+
+        <div class="section">
+            <span class="section-icon">⭕</span>
+            Status
+        </div>
+
+        <div class="section">
+            <span class="section-icon">🤝</span>
+            Friendzone
+        </div>
+
+        <div class="section">
+            <span class="section-icon">📞</span>
+            Calls
+        </div>
+
+        <div class="section">
+            <span class="section-icon">💬</span>
+            Ass
+        </div>
+
+        <div class="section">
+            <span class="section-icon">💘</span>
+            Send Crush
+        </div>
+
+    </div>
+
+    <div class="heading">Crush</div>
+
+    <div class="person" onclick="window.location.href='crush.html'">
+        <div class="avatar">👩</div>
+
+        <div>
+            <div class="person-name">Ashley</div>
+            <div class="status">Online</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
